@@ -1,27 +1,28 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { ContactForm } from "@/components/ContactForm"; // senin form component'in
+import { HearingAidCalculator } from "@/components/HearingAidCalculator";
 
-const queryClient = new QueryClient();
+const Index = () => {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+      <main className="flex-grow">
+        {/* Hesaplayıcı Section */}
+        <section className="py-16 px-4">
+          <HearingAidCalculator />
+        </section>
 
-export default App;
+        {/* Contact Form Section */}
+        <section className="py-16 px-4 bg-gray-50">
+          <ContactForm />
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
