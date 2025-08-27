@@ -1,62 +1,66 @@
 import { useState } from "react";
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // WhatsApp mesaj formatı
-    const phone = "905050359990"; // Footer’daki numara, başında ülke kodu ile
-    const text = `Merhaba, bilgi almak istiyorum.%0A%0AAd: ${name}%0AE-posta: ${email}%0AMesaj: ${message}`;
-    
-    // WhatsApp yönlendirmesi
-    window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${text}`, "_blank");
-    
-    // Formu temizleme
-    setName("");
-    setEmail("");
-    setMessage("");
+    if (!name || !phone) {
+      alert("Lütfen isim ve telefon numarasını doldurun.");
+      return;
+    }
+
+    const text = `Merhabalar, bilgi almak istiyorum.%0Aİsim: ${name}%0ATelefon: ${phone}%0AMesaj: ${message}`;
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=905050359990&text=${text}&type=phone_number&app_absent=0`;
+
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
-      <h2 className="text-2xl font-bold text-center">Bilgi Almak İstiyorum</h2>
-
-      <input
-        type="text"
-        placeholder="Adınız"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="w-full p-3 border border-gray-300 rounded"
-        required
-      />
-
-      <input
-        type="email"
-        placeholder="E-posta"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full p-3 border border-gray-300 rounded"
-        required
-      />
-
-      <textarea
-        placeholder="Mesajınız"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        className="w-full p-3 border border-gray-300 rounded"
-        required
-      />
-
-      <button
-        type="submit"
-        className="w-full bg-green-500 text-white p-3 rounded hover:bg-green-600 transition-colors"
-      >
-        Gönder ve WhatsApp’a Git
-      </button>
-    </form>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-4">Bilgi Almak İstiyorum</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block mb-1 font-semibold">İsim</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border border-gray-300 p-2 rounded"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-semibold">Telefon</label>
+          <input
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="w-full border border-gray-300 p-2 rounded"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-semibold">Mesaj</label>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="w-full border border-gray-300 p-2 rounded"
+            rows={4}
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition-colors"
+        >
+          WhatsApp ile Gönder
+        </button>
+      </form>
+    </div>
   );
 };
+
+export default ContactForm;
