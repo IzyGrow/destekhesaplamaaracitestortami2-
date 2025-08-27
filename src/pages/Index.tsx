@@ -1,7 +1,27 @@
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm.tsx";
 import HearingAidCalculator from "@/components/HearingAidCalculator";
 
 const Index = () => {
-  return <HearingAidCalculator />;
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Header */}
+      <Header />
+
+      {/* Ana içerik */}
+      <main className="flex-grow flex flex-col items-center justify-center py-12 px-4 space-y-12">
+        {/* Hearing Aid Calculator */}
+        <HearingAidCalculator />
+
+        {/* Contact Form */}
+        <ContactForm />
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
 };
 
 export default Index;
