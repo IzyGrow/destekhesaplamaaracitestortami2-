@@ -1,7 +1,7 @@
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { ContactForm } from "@/components/ContactForm"; // senin form component'in
-import { HearingAidCalculator } from "@/components/HearingAidCalculator";
+import Header from "@/components/Header";
+import HearingAidCalculator from "@/components/HearingAidCalculator";
+
 
 const Index = () => {
   return (
@@ -12,11 +12,6 @@ const Index = () => {
         {/* Hesaplayıcı Section */}
         <section className="py-16 px-4">
           <HearingAidCalculator />
-        </section>
-
-        {/* Contact Form Section */}
-        <section className="py-16 px-4 bg-gray-50">
-          <ContactForm />
         </section>
       </main>
 

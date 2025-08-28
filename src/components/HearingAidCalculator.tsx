@@ -56,7 +56,7 @@ export default function HearingAidCalculator() {
   });
 
   const handleContactSubmit = () => {
-    if (data.phone && data.email) {
+    if (data.phone) {
       setStep("details");
     }
   };
@@ -81,13 +81,25 @@ export default function HearingAidCalculator() {
     });
   };
 
+  const handleWhatsAppSubmit = () => {
+    if (!calculation) return;
+
+    const beneficiaryText = data.beneficiary === "self" ? "Kendisi" : "Yakını";
+    const workStatusText = data.workStatus === "working" ? "Çalışan" : "Emekli";
+    
+    const message = `İşitme Cihazı Hesaplama Sonuçları%0A%0A📊 Hesaplama Sonuçları:%0A• Net Ödenen: ${calculation.netPaid.toLocaleString('tr-TR')} ₺%0A• Maaştan Kesinti: ${calculation.salaryDeduction.toLocaleString('tr-TR')} ₺%0A%0A📋 Hesaplama Detayları:%0A• Faydalanıcı: ${beneficiaryText}%0A• Yaş Grubu: ${data.ageGroup}%0A• Çalışma Durumu: ${workStatusText}%0A• Telefon: ${data.phone}%0A• E-posta: ${data.email || 'Girilmedi'}%0A%0A💡 Bilgi almak istiyorum.`;
+
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=905050359990&text=${message}&type=phone_number&app_absent=0`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-background p-4">
       <div className="container mx-auto max-w-2xl">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Calculator className="h-8 w-8 text-primary" />
-            <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <Calculator className="h-8 w-8 text-red-500" />
+            <h1 className="text-3xl font-bold text-black">
               İşitme Cihazı Hesaplayıcı
             </h1>
           </div>
@@ -100,7 +112,7 @@ export default function HearingAidCalculator() {
           <Card className="shadow-elegant">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Phone className="h-5 w-5 text-primary" />
+                <Phone className="h-5 w-5 text-red-500" />
                 İletişim Bilgileri
               </CardTitle>
               <CardDescription>
@@ -119,7 +131,7 @@ export default function HearingAidCalculator() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">E-posta Adresi</Label>
+                <Label htmlFor="email">E-posta Adresi (Zorunlu Değil)</Label>
                 <Input
                   id="email"
                   type="email"
@@ -130,8 +142,8 @@ export default function HearingAidCalculator() {
               </div>
               <Button 
                 onClick={handleContactSubmit}
-                disabled={!data.phone || !data.email}
-                className="w-full bg-gradient-primary hover:opacity-90 transition-all"
+                disabled={!data.phone}
+                className="w-full bg-red-500 hover:bg-red-600 transition-all"
               >
                 Devam Et
               </Button>
@@ -207,14 +219,14 @@ export default function HearingAidCalculator() {
                   İletişim Bilgileriniz
                 </h3>
                 <p className="text-sm text-muted-foreground">Telefon: {data.phone}</p>
-                <p className="text-sm text-muted-foreground">E-posta: {data.email}</p>
+                <p className="text-sm text-red-500">E-posta: {data.email}</p>
               </div>
 
               <div className="space-y-3">
                 <div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="link" className="h-auto p-0 text-xs text-primary">
+                      <Button variant="link" className="h-auto p-0 text-xs text-red-500">
                         <FileText className="h-3 w-3 mr-1" />
                         KVKK aydınlatma metnini oku
                       </Button>
@@ -301,7 +313,7 @@ export default function HearingAidCalculator() {
                 <Button 
                   onClick={handleCalculate}
                   disabled={!data.kvkkConsent}
-                  className="flex-1 bg-gradient-accent hover:opacity-90 transition-all"
+                  className="flex-1 bg-red-500 hover:bg-red-600 transition-all"
                 >
                   Hesapla
                 </Button>
@@ -323,8 +335,8 @@ export default function HearingAidCalculator() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
-                  <h3 className="font-semibold text-primary mb-2">Net Ödenen</h3>
+                <div className="bg-red-500/10 p-4 rounded-lg border border-red-500/20">
+                  <h3 className="font-semibold text-red-500 mb-2">Net Ödenen</h3>
                   <p className="text-2xl font-bold">{calculation.netPaid.toLocaleString('tr-TR')} ₺</p>
                 </div>
                 <div className="bg-accent/10 p-4 rounded-lg border border-accent/20">
@@ -346,10 +358,16 @@ export default function HearingAidCalculator() {
                 </div>
               </div>
 
-              <div className="text-center">
-                <p className="text-xs text-muted-foreground mb-4">
+              <div className="text-center space-y-4">
+                <p className="text-xs text-muted-foreground">
                   PIL 104 ADET/YIL X 5,00 ₺ = 520,00 ₺ + 104,00 (KDV %20) = 624,00 ₺
                 </p>
+                <Button 
+                  onClick={handleWhatsAppSubmit}
+                  className="w-full bg-red-500 hover:bg-red-600 transition-all"
+                >
+                  Bilgi Almak İstiyorum
+                </Button>
                 <Button 
                   onClick={resetCalculator}
                   variant="outline"

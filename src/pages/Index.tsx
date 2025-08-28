@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm.tsx";
 import HearingAidCalculator from "@/components/HearingAidCalculator";
 
 const Index = () => {
@@ -13,9 +12,6 @@ const Index = () => {
       <main className="flex-grow flex flex-col items-center justify-center py-12 px-4 space-y-12">
         {/* Hearing Aid Calculator */}
         <HearingAidCalculator />
-
-        {/* Contact Form */}
-        <ContactForm />
       </main>
 
       {/* Footer */}

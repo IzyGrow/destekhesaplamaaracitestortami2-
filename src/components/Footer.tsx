@@ -36,7 +36,7 @@ export const Footer = () => {
                 
                 <a 
                   href="mailto:mert.arslan@izmirses.com.tr"
-                  className="text-primary hover:text-primary-dark transition-colors flex items-center gap-3 text-lg"
+                  className="text-red-500 hover:text-red-600 transition-colors flex items-center gap-3 text-lg"
                 >
                   <Mail className="w-5 h-5" />
                   mert.arslan@izmirses.com.tr
@@ -57,7 +57,7 @@ export const Footer = () => {
                   href="https://www.instagram.com/izmirsesisitme/#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-dark transition-colors"
+                  className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
                 >
                   <Instagram className="w-6 h-6" />
                 </a>
@@ -65,7 +65,7 @@ export const Footer = () => {
                   href="https://www.facebook.com/izmirsesisitme/?locale=tr_TR"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-dark transition-colors"
+                  className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
                 >
                   <Facebook className="w-6 h-6" />
                 </a>
@@ -73,7 +73,7 @@ export const Footer = () => {
                   href="https://api.whatsapp.com/send/?phone=05050359990&text=Merhabalar+bilgi+almak+istiyorum&type=phone_number&app_absent=0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-dark transition-colors"
+                  className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
                 >
                   <img src="/whatsapp_logo.png" alt="WhatsApp" className="w-6 h-6" />
                 </a>
