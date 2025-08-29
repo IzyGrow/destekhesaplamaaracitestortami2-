@@ -44,8 +44,10 @@ const paymentRates: Record<string, Record<string, PaymentAmount>> = {
   }
 };
 
+type StepType = "contact" | "beneficiary" | "ageGroup" | "workStatus" | "kvkk" | "results";
+
 export default function HearingAidCalculator() {
-  const [step, setStep] = useState<"contact" | "details" | "results">("contact");
+  const [step, setStep] = useState<StepType>("contact");
   const [data, setData] = useState<CalculationData>({
     beneficiary: "self",
     ageGroup: "18+",
@@ -57,11 +59,23 @@ export default function HearingAidCalculator() {
 
   const handleContactSubmit = () => {
     if (data.phone) {
-      setStep("details");
+      setStep("beneficiary");
     }
   };
 
-  const handleCalculate = () => {
+  const handleBeneficiarySubmit = () => {
+    setStep("ageGroup");
+  };
+
+  const handleAgeGroupSubmit = () => {
+    setStep("workStatus");
+  };
+
+  const handleWorkStatusSubmit = () => {
+    setStep("kvkk");
+  };
+
+  const handleKvkkSubmit = () => {
     if (data.kvkkConsent) {
       setStep("results");
     }
@@ -91,6 +105,17 @@ export default function HearingAidCalculator() {
 
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=905050359990&text=${message}&type=phone_number&app_absent=0`;
     window.open(whatsappUrl, "_blank");
+  };
+
+  const getStepNumber = (currentStep: StepType): number => {
+    const stepOrder: StepType[] = ["contact", "beneficiary", "ageGroup", "workStatus", "kvkk", "results"];
+    return stepOrder.indexOf(currentStep) + 1;
+  };
+
+  const getPreviousStep = (currentStep: StepType): StepType | null => {
+    const stepOrder: StepType[] = ["contact", "beneficiary", "ageGroup", "workStatus", "kvkk", "results"];
+    const currentIndex = stepOrder.indexOf(currentStep);
+    return currentIndex > 0 ? stepOrder[currentIndex - 1] : null;
   };
 
   return (
@@ -147,13 +172,13 @@ export default function HearingAidCalculator() {
                 disabled={!data.phone}
                 className="w-full h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
               >
-                Devam Et
+                {getStepNumber(step)}. Adım - Devam Et
               </Button>
             </CardContent>
           </Card>
         )}
 
-        {step === "details" && (
+        {step === "beneficiary" && (
           <Card className="shadow-elegant">
             <CardHeader className="pb-4">
               <CardTitle className="text-lg sm:text-xl">Hesaplama Detayları</CardTitle>
@@ -179,8 +204,34 @@ export default function HearingAidCalculator() {
                 </RadioGroup>
               </div>
 
-              <Separator />
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setStep("contact")} 
+                  className="flex-1 h-14 sm:h-12 text-base sm:text-sm font-semibold"
+                >
+                  Geri
+                </Button>
+                <Button 
+                  onClick={handleBeneficiarySubmit}
+                  className="flex-1 h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
+                >
+                  {getStepNumber(step)}. Adım - Devam Et
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
+        {step === "ageGroup" && (
+          <Card className="shadow-elegant">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg sm:text-xl">Hesaplama Detayları</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
+                Ödeme tutarını hesaplayabilmemiz için aşağıdaki bilgileri girin
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
               <div className="space-y-3">
                 <Label className="text-sm sm:text-base font-medium">Yaş Grubu</Label>
                 <Select value={data.ageGroup} onValueChange={(value: any) => setData({ ...data, ageGroup: value })}>
@@ -196,6 +247,34 @@ export default function HearingAidCalculator() {
                 </Select>
               </div>
 
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setStep("beneficiary")} 
+                  className="flex-1 h-14 sm:h-12 text-base sm:text-sm font-semibold"
+                >
+                  Geri
+                </Button>
+                <Button 
+                  onClick={handleAgeGroupSubmit}
+                  className="flex-1 h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
+                >
+                  {getStepNumber(step)}. Adım - Devam Et
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {step === "workStatus" && (
+          <Card className="shadow-elegant">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg sm:text-xl">Hesaplama Detayları</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
+                Ödeme tutarını hesaplayabilmemiz için aşağıdaki bilgileri girin
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
               <div className="space-y-3">
                 <Label className="text-sm sm:text-base font-medium">Çalışma Durumu</Label>
                 <RadioGroup
@@ -213,8 +292,34 @@ export default function HearingAidCalculator() {
                 </RadioGroup>
               </div>
 
-              <Separator />
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setStep("ageGroup")} 
+                  className="flex-1 h-14 sm:h-12 text-base sm:text-sm font-semibold"
+                >
+                  Geri
+                </Button>
+                <Button 
+                  onClick={handleWorkStatusSubmit}
+                  className="flex-1 h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
+                >
+                  {getStepNumber(step)}. Adım - Devam Et
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
+        {step === "kvkk" && (
+          <Card className="shadow-elegant">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg sm:text-xl">Hesaplama Detayları</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
+                Ödeme tutarını hesaplayabilmemiz için aşağıdaki bilgileri girin
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
               <div className="bg-muted/50 p-4 rounded-lg space-y-2">
                 <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
                   <Mail className="h-4 w-4" />
@@ -312,17 +417,17 @@ export default function HearingAidCalculator() {
               <div className="flex gap-3">
                 <Button 
                   variant="outline" 
-                  onClick={() => setStep("contact")} 
+                  onClick={() => setStep("workStatus")} 
                   className="flex-1 h-14 sm:h-12 text-base sm:text-sm font-semibold"
                 >
                   Geri
                 </Button>
                 <Button 
-                  onClick={handleCalculate}
+                  onClick={handleKvkkSubmit}
                   disabled={!data.kvkkConsent}
                   className="flex-1 h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
                 >
-                  Hesapla
+                  {getStepNumber(step)}. Adım - Hesapla
                 </Button>
               </div>
             </CardContent>
