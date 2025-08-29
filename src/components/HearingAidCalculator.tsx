@@ -94,56 +94,58 @@ export default function HearingAidCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-background p-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-background p-2 sm:p-4">
       <div className="container mx-auto max-w-2xl">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Calculator className="h-8 w-8 text-red-500" />
-            <h1 className="text-3xl font-bold text-black">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
+            <Calculator className="h-6 w-6 sm:h-8 sm:w-8 text-red-500" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-black">
               İşitme Cihazı Hesaplayıcı
             </h1>
           </div>
-          <p className="text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             İşitme cihazı ödeme tutarlarınızı kolayca hesaplayın
           </p>
         </div>
 
         {step === "contact" && (
           <Card className="shadow-elegant">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                 <Phone className="h-5 w-5 text-red-500" />
                 İletişim Bilgileri
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm sm:text-base">
                 Hesaplama sonuçlarını sizinle paylaşabilmemiz için iletişim bilgilerinizi girin
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="phone">Telefon Numarası</Label>
+                <Label htmlFor="phone" className="text-sm sm:text-base">Telefon Numarası</Label>
                 <Input
                   id="phone"
                   type="tel"
                   placeholder="0555 123 45 67"
                   value={data.phone}
                   onChange={(e) => setData({ ...data, phone: e.target.value })}
+                  className="h-12 sm:h-10 text-base"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">E-posta Adresi (Zorunlu Değil)</Label>
+                <Label htmlFor="email" className="text-sm sm:text-base">E-posta Adresi (Zorunlu Değil)</Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="ornek@email.com"
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
+                  className="h-12 sm:h-10 text-base"
                 />
               </div>
               <Button 
                 onClick={handleContactSubmit}
                 disabled={!data.phone}
-                className="w-full bg-red-500 hover:bg-red-600 transition-all"
+                className="w-full h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
               >
                 Devam Et
               </Button>
@@ -153,26 +155,26 @@ export default function HearingAidCalculator() {
 
         {step === "details" && (
           <Card className="shadow-elegant">
-            <CardHeader>
-              <CardTitle>Hesaplama Detayları</CardTitle>
-              <CardDescription>
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg sm:text-xl">Hesaplama Detayları</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
                 Ödeme tutarını hesaplayabilmemiz için aşağıdaki bilgileri girin
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-3">
-                <Label>Kimler için hesaplıyorsunuz?</Label>
+                <Label className="text-sm sm:text-base font-medium">Kimler için hesaplıyorsunuz?</Label>
                 <RadioGroup
                   value={data.beneficiary}
                   onValueChange={(value: "self" | "relative") => setData({ ...data, beneficiary: value })}
                 >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="self" id="self" />
-                    <Label htmlFor="self">Kendim için</Label>
+                  <div className="flex items-center space-x-3 py-2">
+                    <RadioGroupItem value="self" id="self" className="h-5 w-5" />
+                    <Label htmlFor="self" className="text-base cursor-pointer">Kendim için</Label>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="relative" id="relative" />
-                    <Label htmlFor="relative">Yakınım için</Label>
+                  <div className="flex items-center space-x-3 py-2">
+                    <RadioGroupItem value="relative" id="relative" className="h-5 w-5" />
+                    <Label htmlFor="relative" className="text-base cursor-pointer">Yakınım için</Label>
                   </div>
                 </RadioGroup>
               </div>
@@ -180,33 +182,33 @@ export default function HearingAidCalculator() {
               <Separator />
 
               <div className="space-y-3">
-                <Label>Yaş Grubu</Label>
+                <Label className="text-sm sm:text-base font-medium">Yaş Grubu</Label>
                 <Select value={data.ageGroup} onValueChange={(value: any) => setData({ ...data, ageGroup: value })}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-12 sm:h-10 text-base">
                     <SelectValue placeholder="Yaş grubunu seçin" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="0-4">0-4 Yaş</SelectItem>
-                    <SelectItem value="5-12">5-12 Yaş</SelectItem>
-                    <SelectItem value="13-18">13-18 Yaş</SelectItem>
-                    <SelectItem value="18+">18+ Yaş</SelectItem>
+                    <SelectItem value="0-4" className="text-base py-3">0-4 Yaş</SelectItem>
+                    <SelectItem value="5-12" className="text-base py-3">5-12 Yaş</SelectItem>
+                    <SelectItem value="13-18" className="text-base py-3">13-18 Yaş</SelectItem>
+                    <SelectItem value="18+" className="text-base py-3">18+ Yaş</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-3">
-                <Label>Çalışma Durumu</Label>
+                <Label className="text-sm sm:text-base font-medium">Çalışma Durumu</Label>
                 <RadioGroup
                   value={data.workStatus}
                   onValueChange={(value: "working" | "retired") => setData({ ...data, workStatus: value })}
                 >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="working" id="working" />
-                    <Label htmlFor="working">Çalışan</Label>
+                  <div className="flex items-center space-x-3 py-2">
+                    <RadioGroupItem value="working" id="working" className="h-5 w-5" />
+                    <Label htmlFor="working" className="text-base cursor-pointer">Çalışan</Label>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="retired" id="retired" />
-                    <Label htmlFor="retired">Emekli</Label>
+                  <div className="flex items-center space-x-3 py-2">
+                    <RadioGroupItem value="retired" id="retired" className="h-5 w-5" />
+                    <Label htmlFor="retired" className="text-base cursor-pointer">Emekli</Label>
                   </div>
                 </RadioGroup>
               </div>
@@ -214,7 +216,7 @@ export default function HearingAidCalculator() {
               <Separator />
 
               <div className="bg-muted/50 p-4 rounded-lg space-y-2">
-                <h3 className="font-semibold flex items-center gap-2">
+                <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
                   <Mail className="h-4 w-4" />
                   İletişim Bilgileriniz
                 </h3>
@@ -226,7 +228,7 @@ export default function HearingAidCalculator() {
                 <div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="link" className="h-auto p-0 text-xs text-red-500">
+                      <Button variant="link" className="h-auto p-0 text-xs sm:text-sm text-red-500">
                         <FileText className="h-3 w-3 mr-1" />
                         KVKK aydınlatma metnini oku
                       </Button>
@@ -294,26 +296,31 @@ export default function HearingAidCalculator() {
                     </DialogContent>
                   </Dialog>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-3 py-2">
                   <Checkbox
                     id="kvkk"
                     checked={data.kvkkConsent}
                     onCheckedChange={(checked) => setData({ ...data, kvkkConsent: checked as boolean })}
+                    className="h-5 w-5"
                   />
-                  <Label htmlFor="kvkk" className="text-sm">
+                  <Label htmlFor="kvkk" className="text-sm sm:text-base cursor-pointer">
                     KVKK kapsamında kişisel verilerimin kullanılmasını kabul ediyorum
                   </Label>
                 </div>
               </div>
 
               <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setStep("contact")} className="flex-1">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setStep("contact")} 
+                  className="flex-1 h-14 sm:h-12 text-base sm:text-sm font-semibold"
+                >
                   Geri
                 </Button>
                 <Button 
                   onClick={handleCalculate}
                   disabled={!data.kvkkConsent}
-                  className="flex-1 bg-red-500 hover:bg-red-600 transition-all"
+                  className="flex-1 h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
                 >
                   Hesapla
                 </Button>
@@ -324,31 +331,31 @@ export default function HearingAidCalculator() {
 
         {step === "results" && calculation && (
           <Card className="shadow-elegant">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 Hesaplama Sonuçları
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm sm:text-base">
                 {data.ageGroup} yaş grubu - {data.workStatus === "working" ? "Çalışan" : "Emekli"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-red-500/10 p-4 rounded-lg border border-red-500/20">
-                  <h3 className="font-semibold text-red-500 mb-2">Net Ödenen</h3>
-                  <p className="text-2xl font-bold">{calculation.netPaid.toLocaleString('tr-TR')} ₺</p>
+                  <h3 className="font-semibold text-red-500 mb-2 text-sm sm:text-base">Net Ödenen</h3>
+                  <p className="text-xl sm:text-2xl font-bold">{calculation.netPaid.toLocaleString('tr-TR')} ₺</p>
                 </div>
                 <div className="bg-accent/10 p-4 rounded-lg border border-accent/20">
-                  <h3 className="font-semibold text-accent mb-2">Maaştan Kesinti</h3>
-                  <p className="text-2xl font-bold">{calculation.salaryDeduction.toLocaleString('tr-TR')} ₺</p>
+                  <h3 className="font-semibold text-accent mb-2 text-sm sm:text-base">Maaştan Kesinti</h3>
+                  <p className="text-xl sm:text-2xl font-bold">{calculation.salaryDeduction.toLocaleString('tr-TR')} ₺</p>
                 </div>
               </div>
 
               <Separator />
 
               <div className="bg-muted/50 p-4 rounded-lg">
-                <h3 className="font-semibold mb-3">Hesaplama Detayları</h3>
+                <h3 className="font-semibold mb-3 text-sm sm:text-base">Hesaplama Detayları</h3>
                 <div className="space-y-2 text-sm">
                   <p><span className="font-medium">Faydalanıcı:</span> {data.beneficiary === "self" ? "Kendisi" : "Yakını"}</p>
                   <p><span className="font-medium">Yaş Grubu:</span> {data.ageGroup}</p>
@@ -364,14 +371,14 @@ export default function HearingAidCalculator() {
                 </p>
                 <Button 
                   onClick={handleWhatsAppSubmit}
-                  className="w-full bg-red-500 hover:bg-red-600 transition-all"
+                  className="w-full h-14 sm:h-12 bg-red-500 hover:bg-red-600 transition-all text-base sm:text-sm font-semibold"
                 >
                   Bilgi Almak İstiyorum
                 </Button>
                 <Button 
                   onClick={resetCalculator}
                   variant="outline"
-                  className="w-full"
+                  className="w-full h-14 sm:h-12 text-base sm:text-sm font-semibold"
                 >
                   Yeni Hesaplama Yap
                 </Button>
