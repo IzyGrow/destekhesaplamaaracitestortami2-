@@ -1,118 +1,121 @@
-import { Facebook, Instagram, MessageCircle, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-muted">
-      <div className="w-full py-6 px-4 md:px-8 lg:px-40">
-        {/* Sınır çizgisi grid ile hizalı bir şekilde ayarlandı. */}
-        <div className="border-t border-border w-full mb-6 md:mb-8"></div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 items-start w-full">
-          {/* Diğer 3 kolon: iletişim, şubeler, hızlı erişim */}
-          {/* İletişim Section */}
+    <footer className="w-full bg-white text-gray-800 border-t border-gray-200">
+      <div className="container mx-auto px-4 py-12">
+        {/* Ana içerik grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
+          
+          {/* Sol kolon - Logo + İletişim + Sosyal medya */}
           <div className="space-y-8">
-            <div className="flex items-center space-x-3">
-              <a 
-                href="https://izmirses.com.tr/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="cursor-pointer hover:opacity-80 transition-opacity"
-              >
-                <div className="h-20 flex items-center justify-center text-2xl font-bold text-primary">
+            {/* Logo */}
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <div className="text-3xl font-bold text-blue-600">
                   Logonuz
                 </div>
+              </div>
+            </div>
+
+            {/* İletişim bilgileri + Sosyal medya */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">İletişim</h3>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <MapPin className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                  <div className="text-gray-600 text-sm">
+                    <p>Örnek Mahallesi</p>
+                    <p>Örnek Sokak</p>
+                    <p>Örnek Şehir / Türkiye</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-blue-600" />
+                  <a 
+                    href="mailto:info@isletmeadi.com"
+                    className="text-gray-600 text-sm hover:text-blue-600 transition-colors"
+                  >
+                    info@isletmeadi.com
+                  </a>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <Phone className="w-5 h-5 text-blue-600" />
+                  <a 
+                    href="tel:05050359990"
+                    className="text-gray-600 text-sm hover:text-blue-600 transition-colors"
+                  >
+                    0 (505) 035 99 90
+                  </a>
+                </div>
+
+                {/* Sosyal medya butonları */}
+                <div className="pt-2">
+                  <div className="flex space-x-4">
+                    <a
+                      href="https://www.instagram.com/izmirsesisitme/#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
+                    >
+                      <Instagram className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/izmirsesisitme/?locale=tr_TR"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
+                    >
+                      <Facebook className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="https://api.whatsapp.com/send/?phone=05050359990&text=Merhabalar+bilgi+almak+istiyorum&type=phone_number&app_absent=0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
+                    >
+                      <img src="/whatsapp_logo.png" alt="WhatsApp" className="w-6 h-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* İkinci kolon - Şubelerimiz */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Şubelerimiz</h3>
+            <div className="space-y-4">
+              <a
+                href="https://izmirses.com.tr/iletisim/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
+              >
+                Alsancak Şubesi
+              </a>
+              <a
+                href="https://izmirses.com.tr/iletisim/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
+              >
+                Gaziemir Şubesi
               </a>
             </div>
-            
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-foreground">İletişim</h3>
-              
-              <div className="space-y-4 text-base text-muted-foreground">
-                <p className="text-lg leading-relaxed">
-                  Şair Eşref Bulv. No:82/1 Şair<br />
-                  Apt. K1 D1 Alsancak / İzmir
-                </p>
-                
-                <a 
-                  href="mailto:mert.arslan@izmirses.com.tr"
-                  className="text-red-500 hover:text-red-600 transition-colors flex items-center gap-3 text-lg"
-                >
-                  <Mail className="w-5 h-5" />
-                  mert.arslan@izmirses.com.tr
-                </a>
-                
-                <a 
-                  href="tel:05050359990"
-                  className="text-foreground hover:text-primary transition-colors flex items-center gap-3 text-lg"
-                >
-                  <Phone className="w-5 h-5" />
-                  0 (505) 035 99 90
-                </a>
-              </div>
-
-              {/* Social Media Icons */}
-              <div className="flex space-x-6 pt-4">
-                <a
-                  href="https://www.instagram.com/izmirsesisitme/#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
-                >
-                  <Instagram className="w-6 h-6" />
-                </a>
-                <a
-                  href="https://www.facebook.com/izmirsesisitme/?locale=tr_TR"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
-                >
-                  <Facebook className="w-6 h-6" />
-                </a>
-                <a
-                  href="https://api.whatsapp.com/send/?phone=05050359990&text=Merhabalar+bilgi+almak+istiyorum&type=phone_number&app_absent=0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
-                >
-                  <img src="/whatsapp_logo.png" alt="WhatsApp" className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
           </div>
 
-          {/* Şubelerimiz Section */}
+          {/* Üçüncü kolon - Hızlı erişim */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground">Şubelerimiz</h3>
-            <div className="space-y-4">
-              {[
-                "Karşıyaka Şube",
-                "Gaziemir Şubesi", 
-                "Balçova Şubesi",
-                "Menderes Şubesi",
-                "Alsancak Şubesi",
-                "Yeşilyurt Şubesi"
-              ].map((branch) => (
-                <a
-                  key={branch}
-                  href="https://izmirses.com.tr/iletisim/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-lg text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {branch}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Hızlı Erişim Section */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground">Hızlı Erişim</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Hızlı Erişim</h3>
             <div className="space-y-4">
               <a
                 href="https://izmirses.com.tr/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 Anasayfa
               </a>
@@ -120,7 +123,7 @@ export const Footer = () => {
                 href="https://izmirses.com.tr/faydali-bilgiler/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 Faydalı Bilgiler
               </a>
@@ -128,7 +131,7 @@ export const Footer = () => {
                 href="https://izmirses.com.tr/hakkimizda/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 Hakkımızda
               </a>
@@ -136,7 +139,7 @@ export const Footer = () => {
                 href="https://izmirses.com.tr/hizmetlerimiz/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 Hizmetlerimiz
               </a>
@@ -144,7 +147,7 @@ export const Footer = () => {
                 href="https://izmirses.com.tr/kulak-arkasi-isitme-cihazlari/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 Kulak Arkası İşitme Cihazları
               </a>
@@ -152,7 +155,7 @@ export const Footer = () => {
                 href="https://izmirses.com.tr/kulak-ici-isitme-cihazlari/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 Kulak İçi İşitme Cihazları
               </a>
@@ -160,7 +163,7 @@ export const Footer = () => {
                 href="https://izmirses.com.tr/randevu-al/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 Randevu Alın
               </a>
@@ -168,24 +171,28 @@ export const Footer = () => {
                 href="https://izmirses.com.tr/iletisim/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block text-gray-600 text-sm hover:text-blue-600 transition-colors"
               >
                 İletişim
               </a>
             </div>
           </div>
-          {/* Açıklama yazısı en sağa alınıyor */}
-          <div className="md:col-span-1 col-span-full flex items-center justify-center mb-8 md:mb-0">
-            <p className="text-base md:text-lg font-bold text-foreground leading-relaxed drop-shadow-sm max-w-xs text-center">
-              İzmir Ses, İzmir'de işitme kaybıyla mücadele eden bireylere en iyi işitme çözümlerini sunmaya kendini adamıştır. 20 yılı aşkın deneyime sahip uzman ekibimiz, her bireyin özel ihtiyaçlarını karşılamak için en son teknolojiyi ve en yüksek kaliteli ürünleri kullanmaktadır.
+
+          {/* Dördüncü kolon - Uzun açıklama */}
+          <div className="space-y-4">
+            <p className="text-gray-600 text-sm leading-relaxed">
+              "İşletme Adı" olarak, işitme sağlığınızı önemsiyor, hayat kalitenizi artırmak için en yeni teknolojilere sahip işitme cihazlarını sizlerle buluşturuyoruz. Uzman ekibimizle ücretsiz işitme testi, kişiye özel çözümler ve satış sonrası destekle daima yanınızdayız. Duyduğunuz her an daha anlamlı, her ses daha net olsun diye buradayız!
             </p>
           </div>
         </div>
+
+        {/* Alt çizgi */}
+        <div className="border-t border-gray-200 w-full mb-6"></div>
+        
         {/* Copyright */}
-        <div className="border-t border-border w-full mt-8"></div>
-        <div className="pt-6 text-center">
-          <p className="text-base text-muted-foreground">
-            © 2025. Tüm hakları saklıdır.
+        <div className="text-center">
+          <p className="text-gray-500 text-sm">
+            © 2025 İzmir Ses. Tüm hakları saklıdır.
           </p>
         </div>
       </div>
