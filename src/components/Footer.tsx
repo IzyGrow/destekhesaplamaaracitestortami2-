@@ -4,7 +4,7 @@ export const Footer = () => {
   return (
     <footer className="w-full bg-muted">
       <div className="w-full py-6 px-4 md:px-8 lg:px-40">
-        {/* Sınır çizgisi grid ile hizalı */}
+        {/* Sınır çizgisi grid ile hizalı bir şekilde ayarlandı. */}
         <div className="border-t border-border w-full mb-6 md:mb-8"></div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 items-start w-full">
           {/* Diğer 3 kolon: iletişim, şubeler, hızlı erişim */}
