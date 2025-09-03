@@ -17,11 +17,9 @@ export const Footer = () => {
                 rel="noopener noreferrer"
                 className="cursor-pointer hover:opacity-80 transition-opacity"
               >
-                <img 
-                  src="/izmirses-logo.jpeg" 
-                  alt="İzmirses İşitme Cihazları" 
-                  className="h-20 object-contain"
-                />
+                <div className="h-20 flex items-center justify-center text-2xl font-bold text-primary">
+                  Logonuz
+                </div>
               </a>
             </div>
             
@@ -187,7 +185,7 @@ export const Footer = () => {
         <div className="border-t border-border w-full mt-8"></div>
         <div className="pt-6 text-center">
           <p className="text-base text-muted-foreground">
-            © 2025. İzmirses İşitme Cihazları. Tüm hakları saklıdır.
+            © 2025. Tüm hakları saklıdır.
           </p>
         </div>
       </div>
