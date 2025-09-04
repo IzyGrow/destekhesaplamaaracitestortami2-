@@ -181,7 +181,7 @@ export const Footer = () => {
           {/* Dördüncü kolon - Uzun açıklama */}
           <div className="space-y-4">
             <p className="text-gray-600 text-sm leading-relaxed">
-              "İşletme Adı" olarak, işitme sağlığınızı önemsiyor, hayat kalitenizi artırmak için en yeni teknolojilere sahip işitme cihazlarını sizlerle buluşturuyoruz. Uzman ekibimizle ücretsiz işitme testi, kişiye özel çözümler ve satış sonrası destekle daima yanınızdayız. Duyduğunuz her an daha anlamlı, her ses daha net olsun diye buradayız!
+              "İşletme Adı" olarak, işitme sağlığınızı önemsiyor.
             </p>
           </div>
         </div>
