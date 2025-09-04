@@ -192,7 +192,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-gray-500 text-sm">
-            © 2025 İzmir Ses. Tüm hakları saklıdır.
+            © 2025 İzyGrow. Tüm hakları saklıdır.
           </p>
         </div>
       </div>
